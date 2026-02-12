@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>    <link rel="stylesheet" href="./css/libros.css">    
+    <script src="./js/autores.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar bg-dark">
+            <div class="container-fluid bg-dark">
+                <a class="navbar-brand text-white fw-bold" href="inicio.html">
+                    📚 Libros
+                </a>
+                <a class="navbar-brand text-white fw-bold" href="#">Autores</a>
+                <a href="generos.html" class="navbar-brand text-white fw-bold">Generos</a>
+            </div>
+        </nav>
+    </header>
+     <section class="m-2 text-center">
+        <a  class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCrearAutor">Nuevo Autor<i class="bi bi-plus"></i> </a>
+    </section>
+    <section id="autores"  class="bg-dark container text-white rounded p-2">
+
+    </section>
+</body>
+   <div class="modal fade" id="modalEliminarAutor" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lm modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title"><span class="text-warning"><i class="bi bi-exclamation-octagon-fill"></i></span>  ¿Está seguro de eliminar?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-dark me-2" id="btnBorrarSi" data-bs-dismiss="modal">SI</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalCrearAutor" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lm modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center fw-bold">Crear Autor</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <input type="text" id="txtNomAut" placeholder="Nombre Autor">
+                </div>
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-dark me-2" id="btnEnviarAutor" data-bs-dismiss="modal">Enviar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalModificarAutor" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lm modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center fw-bold">Modificar Autor</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <input type="text" id="txtNomAutMod">
+                </div>
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-dark me-2" id="btnEditarAutor" data-bs-dismiss="modal">Enviar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javier Saugar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/libros.js" defer></script>
+    <link rel="stylesheet" href="./css/libros.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar bg-dark">
+            <div class="container-fluid bg-dark">
+                <a class="navbar-brand text-white fw-bold" href="#">
+                    📚 Libros
+                </a>
+                <a class="navbar-brand text-white fw-bold" href="autores.html">Autores</a>
+                <a href="generos.html"  class="navbar-brand text-white fw-bold">Generos</a>
+            </div>
+        </nav>
+    </header>
+    <section class="m-2 text-center">
+        <a  class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalNuevoLibro" id="btnNuevoLibro">Nuevo Libro<i class="bi bi-plus"></i> </a>
+    </section>
+    <section class="bg-dark container text-white rounded-top">
+         <div class="d-flex justify-content-between">
+            <h1><span class="fw-bold text-decoration-underline"> Libros:</span></h1>
+            <div class="d-flex ">
+                <a class="btn btn-light h-75 mt-2" id="paginaMenos"><i class="bi bi-dash-square"></i></a>
+                <p class="bg-5 m-3 text-primary text-decoration-underline fw-bold" id="numeroPagina"></p>
+                <a class="btn btn-light h-75 mt-2" id="paginaMas"><i class="bi bi-plus-square"></i></a>
+            </div>
+        </div>
+    </section>
+    <section id="libros" class="bg-dark container text-white rounded-bottom" > 
+    </section>
+    <footer class="bg-dark mt-3">
+        <p class="text-white text-center">Realizado por Javier Saugar Maqueda</p>
+    </footer>
+</body>
+    <div class="modal fade" id="modalInfo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="card " style="width: 18rem;">
+                    <img class="card-img-top" id="imgInfo">
+                    <div class="card-body">
+                    <h5 class="card-title fw-bold text-decoration-underline" id="tituloInfo">Titulo:</h5>
+                    <p class="card-text" id="descripcionInfo">
+                        Sinopsis:
+                    </p>
+                    <h5 class="card-title" id="autorInfo"></h5>
+                    <h5 class="card-title" id="generoInfo"></h5>
+                    <a href="#" class="btn btn-dark">Salir</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalNuevoLibro" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content p-3">
+            <h5 class="text-center fw-bold mb-3">Nuevo Libro</h5>
+            <form id="formNuevoLibro">
+                <div>
+                    <input type="file" accept="image/"  class="form-control mb-2" id="imagenLibro">
+                    <div class="bg-dark text-center h-25 rounded p-2 w-50 mx-auto">
+                        <img src="./imagenes/libro-default.png" alt="" id="imagePreview" width="200">
+                    </div> 
+                </div>
+                <input type="text" class="form-control mb-2" 
+                    placeholder="Título" id="tituloNuevoLibro" required>
+                <input type="text" class="form-control mb-2" 
+                    placeholder="Descripción" id="descripcionNuevoLibro" required>
+                <select class="form-select mb-2" id="autorNuevoLibro" required>
+                </select>
+                <select class="form-select mb-3" id="generoNuevoLibro" required>
+                </select>
+                <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Salir
+                </button>
+                <button id="btnEnviar" type="button" class="btn btn-dark" data-bs-dismiss="modal">
+                    Guardar
+                </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalEliminarLibro" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lm modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title"><span class="text-warning"><i class="bi bi-exclamation-octagon-fill"></i></span>  ¿Está seguro de eliminar?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-dark me-2" id="btnBorrarSi" data-bs-dismiss="modal">SI</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="modal fade" id="modalEditarLibro" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content p-3">
+            <h5 class="text-center fw-bold mb-3">Nuevo Libro</h5>
+            <form id="formNuevoLibro">
+                <input type="file" class="form-control mb-2" id="imagenLibroMod">
+                 <div class="bg-dark text-center h-25 rounded p-2 w-50 mx-auto">
+                        <img src="./imagenes/libro-default.png" alt="" id="imagePreviewMod" width="200">
+                    </div> 
+                <input type="text" class="form-control mb-2" 
+                     id="tituloModLibro" required>
+                <input type="text" class="form-control mb-2" 
+                    id="descModLibro" required>
+                <select class="form-select mb-2" id="autorModLibro" required>
+                </select>
+                <select class="form-select mb-3" id="generoModLibro" required>
+                </select>
+                <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Salir
+                </button>
+                <button id="btnModEnviar" type="button" class="btn btn-dark" data-bs-dismiss="modal">
+                    Guardar
+                </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</html>
