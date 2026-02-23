@@ -43,7 +43,6 @@ document.querySelector("#btnNuevoLibro").addEventListener("click",()=>{
             datos.append("descripcion",descripcion);
             datos.append("autor_id",autor);
             datos.append("genero_id",genero);
-            datos.append("imagen",imagenURl);
         }else{
             datos.append("titulo",titulo);
             datos.append("descripcion",descripcion);
@@ -168,16 +167,29 @@ fetch(url+"api/libros/pagina/"+paginas)
             selectAutores(document.querySelector("#autorModLibro"));
             selectGeneros(document.querySelector("#generoModLibro"))
             imagePreviewMod.src = url+ libro.imagen;
-
+            
 
             document.querySelector("#btnModEnviar").addEventListener("click",()=>{
-                let datos = {
-                    titulo: document.querySelector("#tituloModLibro").value,
-                    descripcion: document.querySelector("#descModLibro").value,
-                    autor_id: parseInt(document.querySelector("#autorModLibro").value),
-                    genero_id: parseInt(document.querySelector("#generoModLibro").value),
-                    imagen:null
-                };
+                let titulo = document.querySelector("#tituloModLibro").value;
+                let descripcion = document.querySelector("#descModLibro").value;
+                let autorID = parseInt(document.querySelector("#autorModLibro").value);
+                let generoId = parseInt(document.querySelector("#generoModLibro").value);
+                let imgUrl = document.querySelector("#imagenLibroMod").files[0];
+                let form = document.querySelector("#formModLibro");
+                console.log("form")
+                let datos = new FormData(form);
+                if(imgUrl != null){
+                    datos.append("titulo",titulo);
+                    datos.append("descripcion",descripcion);
+                    datos.append("autor_id",autorID);
+                    datos.append("genero_id",generoId);
+                    datos.append("imagen",imgUrl);
+                }else{
+                    datos.append("titulo",titulo);
+                    datos.append("descripcion",descripcion);
+                    datos.append("autor_id",autorID);
+                    datos.append("genero_id",generoId);
+                }
                 putLibro(libro,datos)
                 getLibrosPaginacion(contadorPaginas)
             })
@@ -315,10 +327,7 @@ function deleteLibro(id){
 function putLibro(libro,userData){
   fetch(url + "api/libros/" + libro.id, {
     method: 'PUT',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(userData) 
+     body:userData
     })
     .then(response => {
         if (!response.ok) {
